@@ -1,0 +1,1 @@
+D:\FutureOfMe\MovieApp\MovieApp\MovieApp.csproj;x64

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieApp.Views.MovieMain"
+             xmlns:local="clr-namespace:MovieApp.Views"
+             Title="MovieMain">
+    <ScrollView>
+        
+        <StackLayout Padding="10">
+
+            <CarouselView>
+                <CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>https://static.minhtuanmobile.com/uploads/editer/2024-10/11/images/dragon-ball-daima-cach-xem-va-lich-phat-song-tung-tap-2.webp</x:String>
+                        <x:String>https://wallpapers.com/images/high/action-movie-3840-x-2400-wallpaper-pb93e7r343erqgtt.webp</x:String>
+                        <x:String>https://images2.thanhnien.vn/zoom/700_438/528068263637045248/2023/6/9/spiderman-16862767822821064845066-0-0-428-685-crop-16862769031832108384623.jpg</x:String>
+                    </x:Array>
+                </CarouselView.ItemsSource>
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" HeightRequest="300" WidthRequest="500" />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <!-- Phim HOT -->
+            <Label Text="Phim Hot Trong Tuần" FontSize="Large" FontAttributes="Bold" />
+
+            <!-- Binding danh sách phim HOT -->
+            <CollectionView ItemsSource="{Binding HotMovies}" ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5">
+                            <Image Source="{Binding PosterUrl}" HeightRequest="150" WidthRequest="100" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+        Command="{Binding Source={RelativeSource AncestorType={x:Type local:MovieMain}}, Path=BindingContext.MovieTappedCommand}"
+        CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Mới Nhất -->
+            <Label Text="Mới Nhất" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" />
+
+            <!-- Binding danh sách phim Mới Nhất -->
+            <CollectionView ItemsSource="{Binding NewMovies}" ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5">
+                            <Image Source="{Binding PosterUrl}" HeightRequest="150" WidthRequest="100" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+Command="{Binding Source={RelativeSource AncestorType={x:Type local:MovieMain}}, Path=BindingContext.MovieTappedCommand}"
+CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
